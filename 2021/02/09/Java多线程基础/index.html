@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://liujm1024.github.io">
-  <title>~ ~!</title>
+  <title>Java多线程基础 | ~ ~!</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="~ ~!">
-<meta property="og:url" content="https://liujm1024.github.io/index.html">
+  <meta name="description" content="Java多线程基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java多线程基础">
+<meta property="og:url" content="https://liujm1024.github.io/2021/02/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="~ ~!">
+<meta property="og:description" content="Java多线程基础">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-02-09T08:13:10.000Z">
+<meta property="article:modified_time" content="2021-02-09T08:14:23.520Z">
 <meta property="article:author" content="liujm">
 <meta name="twitter:card" content="summary">
   
@@ -213,25 +213,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-Java多线程基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Java多线程基础" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/02/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" target="_blank">Java多线程基础</a>
-  
+    <h1 class="article-title" itemprop="name">
+      Java多线程基础
     </h1>
   
 
 
   
   
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2021/02/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="archive-article-date">
         <time datetime="2021-02-09T08:13:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-09</time>
 </a>
@@ -239,20 +239,394 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.3k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">8分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="Java多线程基础"><a href="#Java多线程基础" class="headerlink" title="Java多线程基础"></a>Java多线程基础</h1>
-    
-    <a class="article-more-a" href="/2021/02/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/#more">more >></a>
-    
+    <h1 id="Java多线程基础"><a href="#Java多线程基础" class="headerlink" title="Java多线程基础"></a>Java多线程基础</h1><a id="more"></a>
+
+<p>一、程序，进程，线程等相关概念的理解</p>
+<ol>
+<li>程序是指未完成指定任务，用某种语言编写的一段代码指令的集合，即指一段静态的代码。</li>
+<li>进程是程序的一次执行过程，可以理解为正在执行的一个程序。（进程作为资源分配的单位，系统在运行时会为每个进程分配不同的内存区域）</li>
+<li>进程进一步细分为线程，是程序内部的一条执行路径。（线程作为调度和执行的单位，线程之间的切换开销小）</li>
+<li>每个线程都拥有自己独立的栈和程序计数器</li>
+<li>多个线程会共享同一个进程中的方法区和堆</li>
+</ol>
+<p>二、单核与多核，并行与并发的区别</p>
+<ol>
+<li>单核CPU是一种假的多线程，因为在同一个时间单元内，最多只能处理一个线程，只是因为时间短，感受不到</li>
+<li>多核CPU才能够真正发挥多线程的作用（现在的服务器都是多线程的）</li>
+<li>一个Java应用程序运行过程中最少包括三条线程即：main线程，gc垃圾回收线程，异常处理线程</li>
+<li>并行是指多个CPU同时处理多个任务</li>
+<li>并发是指单个CPU同时处理多个任务</li>
+</ol>
+<p>三、创建多线程的两种方式</p>
+<p>　　方式一：继承extends Thread</p>
+<ol>
+<li>创建一个Thread类的继承类</li>
+<li>重写该继承类中的run()方法</li>
+<li>实例化该继承类</li>
+<li>调用对象的start()方法</li>
+</ol>
+<p>　　方式二：实现implements Runnable()</p>
+<ol>
+<li>创建一个Runnable()接口的实现类</li>
+<li>重写该实现类中的run()方法</li>
+<li>实例化该实现类并将其作为形参传进Thread类的构造器</li>
+<li>调用Thread的实例化对象的start()方法</li>
+</ol>
+<p>　　二者的优劣？</p>
+<p>　　通过实现Runnable接口的方式来实现多线程更好，原因：</p>
+<ol>
+<li>没有单继承的局限性</li>
+<li>更适合来处理共享数据</li>
+</ol>
+<p>四、Thread类中的常用方法</p>
+<ol>
+<li>run()-----------------------------在线程调用start()方法时，会间接调用该方法</li>
+<li>start()----------------------------启动当前线程，调用run()方法</li>
+<li>currentThread()---------------静态方法，返回的当前线程</li>
+<li>getName()----------------------获取当前线程name属性的值</li>
+<li>setName()-----------------------设置当前线程name属性的值</li>
+<li>sleep()---------------------------传进一个int型的参数表示毫秒数，使得当前线程进入阻塞状态</li>
+<li>yield()----------------------------释放CPU的执行权，当前有可能又接着抢到</li>
+<li>stop()-----------------------------已过时，强制使当前线程死亡</li>
+<li>join()------------------------------例：在当前线程a中调用其他线程b.join()，使得当前线程a进入阻塞状态，只有当线程b执行完后，才继续接着线程a的执行</li>
+<li>isAlive()---------------------------判断当前线程是否死亡</li>
+</ol>
+<p>五、线程的优先级</p>
+<ol>
+<li>MAX_PRIPORITY=10</li>
+<li>NORM_PRIPORITY=5(DEFAULT)</li>
+<li>MIN_PRIPORITY=1</li>
+</ol>
+<p>　　说明：默认的线程优先级是5，可以通过get/set方法来设置当前线程的优先级，即pripority属性。但是，优先级别越高，只是意味着该线程有更高的概率抢到CPU的执行权，并不是确切的。</p>
+<p>六、线程通信：</p>
+<p>&nbsp;</p>
+<ol>
+<li>wait()----------------使得该线程进入阻塞状态，并释放锁</li>
+<li>notify()--------------唤醒位于阻塞状态的线程</li>
+<li>nitifyAll()------------唤醒所有位于阻塞状态的线程</li>
+</ol>
+<p>　　说明：这三个方法都是在Object类中定义的，必须声明在同步代码块或同步方法中，且调用者必须是这二者中的同步监视器，否则，会报IlleaalMonitorStateException异常</p>
+<p>　　wait()与sleep()的异同</p>
+<p>　　相同点：调用者二者方法后，线程都会进入阻塞状态</p>
+<p>　　不同点：</p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>方法声明的位置不同，Thread类中声明sleep()。而Object类中只能使用wait()</li>
+<li>sleep()不会释放同步监视器，wait()则正好相反</li>
+<li>wait()必须在同步代码块或同步方法中使用，且调用者必须是该块或方法内的同步监视器</li>
+</ul>
+</li>
+</ul>
+<p>　　线程的分类：</p>
+<ol>
+<li>用户线程</li>
+<li>守护线程</li>
+</ol>
+<p>七、线程的生命周期</p>
+<ul>
+<li>新建</li>
+</ul>
+<ol>
+<li>当线程实例化后为调用Start()方法时</li>
+</ol>
+<ul>
+<li>就绪</li>
+</ul>
+<ol>
+<li>当线程调用start()方法，当前线程就进入了就绪状态</li>
+</ol>
+<ul>
+<li>运行</li>
+</ul>
+<ol>
+<li>当线程获取CPU执行权时，当前线程就进入运行状态</li>
+</ol>
+<ul>
+<li>阻塞</li>
+</ul>
+<p>&nbsp;</p>
+<p>　　　　运行状态--&gt;阻塞状态</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>sleep()</li>
+<li>wait()</li>
+<li>失去锁</li>
+<li>join()</li>
+<li>suspend()</li>
+</ol></li>
+</ol>
+<p>　　　　阻塞状态--&gt;就绪状态</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>sleep时间到</li>
+<li>join时间到</li>
+<li>notify() or notifyAll()</li>
+<li>拿到锁</li>
+<li>resume()</li>
+</ol></li>
+</ol>
+<p>&nbsp;</p>
+<ul>
+<li>死亡</li>
+</ul>
+<p>&nbsp;</p>
+<ol>
+<li>run()方法运行结束</li>
+<li>stop()</li>
+<li>出现ERROR或者EXCEPTION没处理</li>
+</ol>
+<p>八、线程的同步机制</p>
+<p>　　案例：创建多个窗口买票，初始票数为100，直至票数为零结束</p>
+<p>　　　　出现的问题：多个线程同时买票出现重票的情况</p>
+<p>　　　　原因：多个线程操作共享数据时，一个线程还未结束操作，另外一个线程就参与进来</p>
+<p>　　　　解决方法：当有线程操作共享数据时，其他线程也想执行操作时，先让他们进入阻塞状态，直到操作共享数据的线程结束。</p>
+<p>　　方法一：同步代码块</p>
+<p>　　　　synchronized(同步监视器){</p>
+<p>　　　　　　需要被同步的代码</p>
+<p>　　　　}</p>
+<p>　　　　说明：</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>同步监视器俗称锁，可以是对象，也可以是类</li>
+<li>当使用继承来实现多线程时，慎用this来充当同步监视器，可使用类.class</li>
+<li>当使用实现Runnable接口的方式实现多线程时，可使用This充当同步监视器</li>
+</ol></li>
+</ol>
+<p>　　方法二：同步方法</p>
+<p>　　　　若方法体内所有的代码都涉及到共享数据时，可在定义方法时，在权限修饰符后面+synchronized即可。</p>
+<p>　　　　说明：</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>同步方法仍然涉及到同步监视器，只是无需显示声明</li>
+<li>当当前方法是static时，同步监视器是类本身，反之，则是对象</li>
+</ol></li>
+</ol>
+<p>　　方式三：Lock锁，JDK5.0中新增的</p>
+<p>　　　　在需要被同步的代码前，写上lock(),结束时unlock()即释放锁。</p>
+<p>　　　　与synchronized的区别：</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>synchronized在代码块或方法执行完毕后会自动的释放锁</li>
+<li>Lock则需要我们手动的去释放锁</li>
+</ol></li>
+</ol>
+<p>九、面试题，写一个线程安全的懒汉模式</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Bank {
+</span><span style="color: #008080;"> 2</span>     <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">static</span> Bank instance = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span><span style="color: #000000;"> Bank getInstance(){
+</span><span style="color: #008080;"> 4</span>     <span style="color: #008000;">//</span><span style="color: #008000;">多加一层判断，使得线程仅在一开始时没有生成实例时出现阻塞状态</span>
+<span style="color: #008080;"> 5</span>         <span style="color: #0000ff;">if</span>(instance == <span style="color: #0000ff;">null</span><span style="color: #000000;">){
+</span><span style="color: #008080;"> 6</span>             <span style="color: #0000ff;">synchronized</span><span style="color: #000000;"> (instance) {
+</span><span style="color: #008080;"> 7</span>                 <span style="color: #0000ff;">if</span>(instance == <span style="color: #0000ff;">null</span><span style="color: #000000;">){
+</span><span style="color: #008080;"> 8</span>                     instance = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Bank();
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">                }
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">12</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> instance;
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">14</span> }</pre>
+</div>
+<p>十、死锁</p>
+<p>　　不同的线程分别占用着对方需要同步的资源不放，导致所有的线程都进入了阻塞状态。当出现死锁时既不会报错，也不会出现异常，我们使用Java的同步机制时，要避免死锁的发生</p>
+<p>　　案例：</p>
+<p>　　</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> DeadLock {
+</span><span style="color: #008080;"> 2</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+</span><span style="color: #008080;"> 3</span>         B b = <span style="color: #0000ff;">new</span><span style="color: #000000;"> B();
+</span><span style="color: #008080;"> 4</span>         A a = <span style="color: #0000ff;">new</span><span style="color: #000000;"> A();
+</span><span style="color: #008080;"> 5</span>         a.b =<span style="color: #000000;"> b;
+</span><span style="color: #008080;"> 6</span>         b.a =<span style="color: #000000;"> a;
+</span><span style="color: #008080;"> 7</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 调用A对象实例的方法一</span>
+<span style="color: #008080;"> 8</span>         <span style="color: #0000ff;">new</span><span style="color: #000000;"> Thread() {
+</span><span style="color: #008080;"> 9</span>             <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> run() {
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">                a.A1();
+</span><span style="color: #008080;">11</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">12</span> <span style="color: #000000;">        }.start();
+</span><span style="color: #008080;">13</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 调用B对象实例的方法一</span>
+<span style="color: #008080;">14</span>         <span style="color: #0000ff;">new</span><span style="color: #000000;"> Thread() {
+</span><span style="color: #008080;">15</span>             <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> run() {
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">                b.B1();
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">18</span> <span style="color: #000000;">        }.start();
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">21</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> A {
+</span><span style="color: #008080;">22</span>     <span style="color: #0000ff;">public</span><span style="color: #000000;"> B b;
+</span><span style="color: #008080;">23</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> A1() {
+</span><span style="color: #008080;">24</span>         System.out.println("我的锁是A的实例"<span style="color: #000000;">);
+</span><span style="color: #008080;">25</span>         <span style="color: #008000;">//</span><span style="color: #008000;"> 调用B2方法，需要b锁,但是被B1方法给握着</span>
+<span style="color: #008080;">26</span>         <span style="color: #0000ff;">try</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">27</span>             Thread.currentThread().sleep(1500<span style="color: #000000;">);
+</span><span style="color: #008080;">28</span>         } <span style="color: #0000ff;">catch</span><span style="color: #000000;"> (InterruptedException e) {
+</span><span style="color: #008080;">29</span> <span style="color: #000000;">            e.printStackTrace();
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">31</span> <span style="color: #000000;">        b.B2();
+</span><span style="color: #008080;">32</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">33</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> A2() {
+</span><span style="color: #008080;">34</span>         System.out.println("我的锁是a"<span style="color: #000000;">);
+</span><span style="color: #008080;">35</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">36</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">37</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> B {
+</span><span style="color: #008080;">38</span>     <span style="color: #0000ff;">public</span><span style="color: #000000;"> A a;
+</span><span style="color: #008080;">39</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> B1() {
+</span><span style="color: #008080;">40</span>         System.out.println("我的锁是B的实例"<span style="color: #000000;">);
+</span><span style="color: #008080;">41</span>         <span style="color: #0000ff;">try</span><span style="color: #000000;"> {
+</span><span style="color: #008080;">42</span>             Thread.currentThread().sleep(1000<span style="color: #000000;">);
+</span><span style="color: #008080;">43</span>         } <span style="color: #0000ff;">catch</span><span style="color: #000000;"> (InterruptedException e) {
+</span><span style="color: #008080;">44</span> <span style="color: #000000;">            e.printStackTrace();
+</span><span style="color: #008080;">45</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">46</span> <span style="color: #000000;">        a.A2();
+</span><span style="color: #008080;">47</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">48</span> 
+<span style="color: #008080;">49</span>     <span style="color: #008000;">//</span><span style="color: #008000;"> 调用A2方法，需要a锁,但是被A1方法给握着</span>
+<span style="color: #008080;">50</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> B2() {
+</span><span style="color: #008080;">51</span>         System.out.println("我的锁是b"<span style="color: #000000;">);
+</span><span style="color: #008080;">52</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">53</span> }</pre>
+</div>
+<p>十一、锁的释放与否</p>
+<p>释放锁的情况：</p>
+<ol>
+<li>当前线程的同步代码块或同步方法执行完毕</li>
+<li>当前线程出现了未处理的异常或错误</li>
+<li>当前线程在同步代码块或同步方法中遇到了return或break等终止语句</li>
+<li>wait()</li>
+</ol>
+<p>不释放锁的情况：</p>
+<ol>
+<li>sleep()、yield()等方法使得当前线程进入阻塞状态，但依然不会释放同步监视器</li>
+<li>当前线程执行同步代码块或同步方法时，其他线程调用了当前线程的suspend()方法将其挂起，该线程不会释放锁（应尽量避免使用suspend()、resume()等方法来控制线程）</li>
+</ol>
+<p>十二、JDK5.0中新增的创建多线程的方式</p>
+<ul>
+<li>通过实现Callable接口的方式来创建多线程</li>
+</ul>
+<p>　　　　好处：</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>不同于前两种方式，该方法可以有返回值</li>
+<li>支持泛型，且可以抛出异常，被外面所捕获</li>
+</ol></li>
+</ol>
+<ul>
+<li>通过线程池</li>
+</ul>
+<p>　　　　好处：</p>
+<ol>
+<li style="list-style-type: none;"><ol>
+<li>提高了响应速度，不必每次都创建新线程，降低了资源消耗</li>
+<li>便于管理</li>
+</ol></li>
+</ol>
+<p>　　　　代码展示：</p>
+<p>　　　　　　</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> ThreadPoolTest {
+</span><span style="color: #008080;"> 2</span>     
+<span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> main(String[] args) {
+</span><span style="color: #008080;"> 4</span>          ExecutorService service = Executors.newFixedThreadPool(10<span style="color: #000000;">);
+</span><span style="color: #008080;"> 5</span>          
+<span style="color: #008080;"> 6</span>          System.out.println(service.getClass());<span style="color: #008000;">//</span><span style="color: #008000;">class java.util.concurrent.ThreadPoolExecutor</span>
+<span style="color: #008080;"> 7</span>          
+<span style="color: #008080;"> 8</span>          ThreadPoolExecutor service1 =<span style="color: #000000;">  (ThreadPoolExecutor)service;
+</span><span style="color: #008080;"> 9</span> <span style="color: #008000;">//</span><span style="color: #008000;">        设置线程池的核心参数</span>
+<span style="color: #008080;">10</span>          service1.setCorePoolSize(10<span style="color: #000000;">);
+</span><span style="color: #008080;">11</span>          
+<span style="color: #008080;">12</span> <span style="color: #008000;">//</span><span style="color: #008000;">         适用于Runnable接口的实现类
+</span><span style="color: #008080;">13</span> <span style="color: #008000;">//</span><span style="color: #008000;">         service.execute(null);
+</span><span style="color: #008080;">14</span> <span style="color: #008000;">//</span><span style="color: #008000;">        适用于Callable接口的实现类
+</span><span style="color: #008080;">15</span> <span style="color: #008000;">//</span><span style="color: #008000;">         service.submit(null);</span>
+<span style="color: #008080;">16</span> <span style="color: #000000;">        service.shutdown();
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">18</span> }</pre>
+</div>
+<p>&nbsp;</p>
     
 
     
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wechatPay.jpg">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          liujm
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://liujm1024.github.io/2021/02/09/Java多线程基础/" title="Java多线程基础" target="_blank">https://liujm1024.github.io/2021/02/09/Java多线程基础/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -262,16 +636,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/02/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://liujm1024.github.io/2021/02/09/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/09/my-first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">my first blog</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -286,174 +720,33 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-my-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/02/09/my-first-blog/" target="_blank">my first blog</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/02/09/my-first-blog/" class="archive-article-date">
-        <time datetime="2021-02-09T05:45:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="我的博客文章编写"><a href="#我的博客文章编写" class="headerlink" title="我的博客文章编写"></a>我的博客文章编写</h1>
-    
-    <a class="article-more-a" href="/2021/02/09/my-first-blog/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/02/09/my-first-blog/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">Java多线程基础</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
 
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/02/09/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/02/09/hello-world/" class="archive-article-date">
-        <time datetime="2021-02-09T04:09:55.434Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/02/09/hello-world/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-  
+
+
+
+
 
 
           </div>
@@ -493,8 +786,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
